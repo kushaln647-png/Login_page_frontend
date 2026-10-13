@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Inkwell Blog — Discover insightful articles on technology, design, development, and creativity from top writers around the world.">
+  <title>Inkwell Blog — Discover Stories That Inspire</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>✦</text></svg>">
+</head>
+<body>
+  <!-- Background Mesh -->
+  <div class="bg-mesh"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">✦</div>
+        <span>Inkwell</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="create.html" class="nav-link">Write</a>
+      </div>
+
+      <div class="nav-auth" id="navAuth">
+        <a href="login.html" class="btn-ghost">Sign In</a>
+        <a href="register.html" class="btn-primary-sm">Get Started</a>
+      </div>
+
+      <div class="nav-hamburger" id="navHamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNav">
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="dashboard.html" class="nav-link">Dashboard</a>
+    <a href="create.html" class="nav-link">Write</a>
+    <div class="mobile-auth">
+      <a href="login.html" class="btn btn-secondary">Sign In</a>
+      <a href="register.html" class="btn btn-primary">Get Started</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-badge">
+        ✦ &nbsp;The Modern Blog Platform
+      </div>
+
+      <h1>
+        Stories that<br>
+        <span class="gradient-text">inspire & ignite</span>
+      </h1>
+
+      <p>
+        Discover thought-provoking articles, tutorials, and insights from passionate writers.
+        Share your perspective with the world.
+      </p>
+
+      <div class="hero-actions">
+        <a href="register.html" class="btn btn-primary btn-lg">
+          Start Reading →
+        </a>
+        <a href="create.html" class="btn btn-secondary btn-lg">
+          Start Writing
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value">2.4K+</div>
+          <div class="hero-stat-label">Articles Published</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">180+</div>
+          <div class="hero-stat-label">Expert Writers</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">50K+</div>
+          <div class="hero-stat-label">Monthly Readers</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">12</div>
+          <div class="hero-stat-label">Categories</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Post Section -->
+  <section class="section" id="featured-section" style="padding-top: 40px;">
+    <div class="section-container">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+        <div>
+          <h2 class="section-title">Featured Story</h2>
+          <p class="section-subtitle">Editor's pick for this week</p>
+        </div>
+      </div>
+
+      <div class="featured-post" id="featuredPost">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Posts Section -->
+  <section class="section" id="latest-section" style="padding-top: 40px;">
+    <div class="section-container">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom: 8px;">
+        <div>
+          <h2 class="section-title">Latest Articles</h2>
+          <p class="section-subtitle">Fresh perspectives from our community</p>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="categories-scroll" id="categoriesScroll">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Blog Grid -->
+      <div class="blog-grid" id="blogGrid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-container">
+      <div class="newsletter">
+        <h2>Stay in the loop</h2>
+        <p>Get the best articles delivered straight to your inbox every week.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" class="form-input" placeholder="Enter your email address" required>
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-icon">✦</div>
+            <span>Inkwell</span>
+          </a>
+          <p>A modern blogging platform for thinkers, creators, and storytellers. Share your voice with the world.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="GitHub">⌨</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Platform</h4>
+          <a href="index.html">Home</a>
+          <a href="create.html">Write</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="#">Explore</a>
+        </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <a href="#">Writing Guide</a>
+          <a href="#">API Docs</a>
+          <a href="#">Changelog</a>
+          <a href="#">Help Center</a>
+        </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Inkwell. All rights reserved.</span>
+        <span>Made with ♥ for writers everywhere</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    // ===== POPULATE HOME PAGE =====
+    document.addEventListener('DOMContentLoaded', () => {
+      renderFeaturedPost();
+      renderCategories();
+      renderBlogGrid('All');
+      initNewsletter();
+    });
+
+    function renderFeaturedPost() {
+      const featured = BlogManager.getFeaturedPost();
+      if (!featured) return;
+
+      const container = document.getElementById('featuredPost');
+      container.innerHTML = `
+        <div class="card-image-wrapper">
+          <img src="${featured.image}" alt="${featured.title}" class="featured-post-image"
+               onerror="this.style.background='var(--gradient-primary)';this.style.minHeight='380px';this.alt='Featured Post';">
+        </div>
+        <div class="featured-post-content">
+          <span class="badge badge-primary">${featured.category}</span>
+          <h2><a href="#">${featured.title}</a></h2>
+          <p>${featured.excerpt}</p>
+          <div class="card-meta">
+            <div class="card-author">
+              <div class="card-avatar">${featured.authorAvatar}</div>
+              <div>
+                <div class="card-author-name">${featured.author}</div>
+                <div class="card-date">${formatDate(featured.date)} · ${featured.readTime}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCategories() {
+      const categories = BlogManager.getCategories();
+      const container = document.getElementById('categoriesScroll');
+
+      container.innerHTML = categories.map((cat, i) => `
+        <button class="category-chip ${i === 0 ? 'active' : ''}" data-category="${cat}" onclick="filterCategory(this, '${cat}')">
+          ${cat}
+        </button>
+      `).join('');
+    }
+
+    function filterCategory(btn, category) {
+      // Update active chip
+      document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Re-render grid
+      renderBlogGrid(category);
+    }
+
+    function renderBlogGrid(category) {
+      const posts = BlogManager.filterByCategory(category).filter(p => !p.featured);
+      const container = document.getElementById('blogGrid');
+
+      if (posts.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1/-1; text-align:center; padding:60px 20px;">
+            <div style="font-size:3rem; margin-bottom:16px;">📝</div>
+            <h3 style="font-size:1.2rem; margin-bottom:8px;">No articles found</h3>
+            <p style="color:var(--text-secondary);">Be the first to write in this category!</p>
+          </div>
+        `;
+        return;
+      }
+
+      const badgeClasses = {
+        'Technology': 'badge-primary',
+        'Development': 'badge-accent',
+        'Design': 'badge-emerald',
+        'Creativity': 'badge-amber'
+      };
+
+      container.innerHTML = posts.map(post => `
+        <article class="card" data-animate>
+          <div class="card-image-wrapper">
+            <img src="${post.image}" alt="${post.title}" class="card-image"
+                 onerror="this.style.background='var(--gradient-cool)';this.style.height='220px';this.alt='Blog Post';">
+            <span class="card-category">${post.category}</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">
+              <a href="#">${post.title}</a>
+            </h3>
+            <p class="card-excerpt">${post.excerpt}</p>
+            <div class="card-meta">
+              <div class="card-author">
+                <div class="card-avatar">${post.authorAvatar}</div>
+                <span class="card-author-name">${post.author}</span>
+              </div>
+              <span class="card-date">${formatDate(post.date)}</span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      // Re-observe for animations
+      const animator = new ScrollAnimator();
+      animator.observe('[data-animate]');
+    }
+
+    function initNewsletter() {
+      const form = document.getElementById('newsletterForm');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = form.querySelector('input').value;
+        if (email) {
+          Toast.show('Successfully subscribed! 🎉', 'success');
+          form.reset();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

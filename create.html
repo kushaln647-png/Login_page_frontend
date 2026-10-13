@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Write and publish your blog post on Inkwell. Share your ideas with the community.">
+  <title>Create Post — Inkwell Blog</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>✦</text></svg>">
+</head>
+<body>
+  <!-- Background Mesh -->
+  <div class="bg-mesh"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">✦</div>
+        <span>Inkwell</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="create.html" class="nav-link active">Write</a>
+      </div>
+
+      <div class="nav-auth" id="navAuth">
+        <a href="login.html" class="btn-ghost">Sign In</a>
+        <a href="register.html" class="btn-primary-sm">Get Started</a>
+      </div>
+
+      <div class="nav-hamburger" id="navHamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNav">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="dashboard.html" class="nav-link">Dashboard</a>
+    <a href="create.html" class="nav-link active">Write</a>
+    <div class="mobile-auth">
+      <a href="login.html" class="btn btn-secondary">Sign In</a>
+      <a href="register.html" class="btn btn-primary">Get Started</a>
+    </div>
+  </div>
+
+  <!-- Create Post Page -->
+  <main class="create-page">
+    <div class="create-container">
+      <!-- Header -->
+      <div class="create-header">
+        <h1>Create New Post</h1>
+        <p>Share your thoughts, stories, and expertise with the world.</p>
+      </div>
+
+      <!-- Create Form Card -->
+      <div class="create-card">
+        <form id="createForm">
+
+          <!-- Cover Image Upload -->
+          <div class="form-group">
+            <label class="form-label">Cover Image</label>
+            <div class="image-upload" id="imageUpload" onclick="document.getElementById('imageInput').click()">
+              <div class="upload-icon">🖼️</div>
+              <p>Click to upload or drag and drop</p>
+              <p class="upload-hint">PNG, JPG or WebP (max 5MB)</p>
+            </div>
+            <div class="image-preview" id="imagePreview" style="display:none;">
+              <img id="previewImg" src="" alt="Preview">
+              <button type="button" class="remove-image" onclick="removeImage()">✕</button>
+            </div>
+            <input type="file" id="imageInput" accept="image/*" style="display:none;">
+          </div>
+
+          <!-- Title -->
+          <div class="form-group">
+            <label class="form-label" for="postTitle">Title</label>
+            <input type="text" id="postTitle" class="form-input" placeholder="An eye-catching title for your post..." required>
+          </div>
+
+          <!-- Category & Tags Row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="postCategory">Category</label>
+              <select id="postCategory" class="form-select" required>
+                <option value="" disabled selected>Select a category</option>
+                <option value="Technology">Technology</option>
+                <option value="Development">Development</option>
+                <option value="Design">Design</option>
+                <option value="Creativity">Creativity</option>
+                <option value="Business">Business</option>
+                <option value="Lifestyle">Lifestyle</option>
+                <option value="Science">Science</option>
+                <option value="Education">Education</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tags</label>
+              <div class="tags-container" id="tagsContainer" onclick="document.getElementById('tagInput').focus()">
+                <input type="text" id="tagInput" class="tags-input" placeholder="Type and press Enter...">
+              </div>
+            </div>
+          </div>
+
+          <!-- Excerpt -->
+          <div class="form-group">
+            <label class="form-label" for="postExcerpt">Excerpt</label>
+            <input type="text" id="postExcerpt" class="form-input" placeholder="A brief summary of your post (shown in cards)..." required>
+          </div>
+
+          <!-- Content -->
+          <div class="form-group">
+            <label class="form-label" for="postContent">Content</label>
+
+            <!-- Toolbar -->
+            <div class="editor-toolbar">
+              <button type="button" class="toolbar-btn" title="Bold" onclick="insertFormat('**', '**')"><b>B</b></button>
+              <button type="button" class="toolbar-btn" title="Italic" onclick="insertFormat('*', '*')"><i>I</i></button>
+              <button type="button" class="toolbar-btn" title="Underline" onclick="insertFormat('<u>', '</u>')"><u>U</u></button>
+              <div class="toolbar-divider"></div>
+              <button type="button" class="toolbar-btn" title="Heading" onclick="insertFormat('## ', '')">H</button>
+              <button type="button" class="toolbar-btn" title="Quote" onclick="insertFormat('> ', '')">❝</button>
+              <button type="button" class="toolbar-btn" title="Code" onclick="insertFormat('`', '`')">{ }</button>
+              <div class="toolbar-divider"></div>
+              <button type="button" class="toolbar-btn" title="Bullet List" onclick="insertFormat('• ', '')">•</button>
+              <button type="button" class="toolbar-btn" title="Numbered List" onclick="insertFormat('1. ', '')">1.</button>
+              <button type="button" class="toolbar-btn" title="Link" onclick="insertFormat('[', '](url)')">🔗</button>
+            </div>
+
+            <textarea id="postContent" class="form-input editor-textarea" placeholder="Write your article content here... (Markdown supported)" required style="min-height:260px;"></textarea>
+          </div>
+
+          <!-- Word Count -->
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+            <span id="wordCount" style="font-size:0.8rem; color:var(--text-muted);">0 words · ~0 min read</span>
+            <span id="autoSaveStatus" style="font-size:0.8rem; color:var(--emerald-400); opacity:0;">✓ Draft saved</span>
+          </div>
+
+          <!-- Actions -->
+          <div class="create-actions">
+            <div class="create-actions-left">
+              <button type="button" class="btn btn-secondary" onclick="saveDraft()">
+                Save Draft
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="previewPost()" style="border-color: rgba(236, 72, 153, 0.3); color: var(--accent-400);">
+                Preview
+              </button>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Publish Post →
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Preview Modal -->
+  <div id="previewModal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.8); z-index:9999; overflow-y:auto; padding:40px 24px;">
+    <div style="max-width:760px; margin:0 auto; background:var(--bg-secondary); border-radius:var(--radius-xl); border:1px solid var(--border-subtle); overflow:hidden;">
+      <div style="padding:20px 32px; border-bottom:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:space-between;">
+        <span style="font-weight:600; color:var(--text-secondary);">Post Preview</span>
+        <button onclick="closePreview()" style="width:32px; height:32px; border-radius:50%; background:var(--bg-glass); border:1px solid var(--border-subtle); color:var(--text-secondary); cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center;">✕</button>
+      </div>
+      <div id="previewContent" style="padding:40px 32px;"></div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    // ===== TAGS SYSTEM =====
+    const tags = [];
+    const tagInput = document.getElementById('tagInput');
+    const tagsContainer = document.getElementById('tagsContainer');
+
+    tagInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const value = tagInput.value.trim();
+        if (value && !tags.includes(value) && tags.length < 5) {
+          tags.push(value);
+          renderTags();
+          tagInput.value = '';
+        } else if (tags.length >= 5) {
+          Toast.show('Maximum 5 tags allowed', 'info');
+        }
+      }
+    });
+
+    function renderTags() {
+      const tagElements = tagsContainer.querySelectorAll('.tag');
+      tagElements.forEach(t => t.remove());
+
+      tags.forEach((tag, index) => {
+        const tagEl = document.createElement('span');
+        tagEl.className = 'tag';
+        tagEl.innerHTML = `${tag} <span class="remove-tag" onclick="removeTag(${index})">✕</span>`;
+        tagsContainer.insertBefore(tagEl, tagInput);
+      });
+    }
+
+    function removeTag(index) {
+      tags.splice(index, 1);
+      renderTags();
+    }
+
+    // ===== IMAGE UPLOAD =====
+    const imageInput = document.getElementById('imageInput');
+    const imageUpload = document.getElementById('imageUpload');
+    const imagePreview = document.getElementById('imagePreview');
+    const previewImg = document.getElementById('previewImg');
+    let uploadedImageUrl = '';
+
+    imageInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        if (file.size > 5 * 1024 * 1024) {
+          Toast.show('Image must be under 5MB', 'error');
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          uploadedImageUrl = ev.target.result;
+          previewImg.src = uploadedImageUrl;
+          imageUpload.style.display = 'none';
+          imagePreview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Drag and drop
+    imageUpload.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      imageUpload.style.borderColor = 'var(--primary-500)';
+      imageUpload.style.background = 'rgba(99, 102, 241, 0.05)';
+    });
+
+    imageUpload.addEventListener('dragleave', () => {
+      imageUpload.style.borderColor = '';
+      imageUpload.style.background = '';
+    });
+
+    imageUpload.addEventListener('drop', (e) => {
+      e.preventDefault();
+      imageUpload.style.borderColor = '';
+      imageUpload.style.background = '';
+
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) {
+        imageInput.files = e.dataTransfer.files;
+        imageInput.dispatchEvent(new Event('change'));
+      }
+    });
+
+    function removeImage() {
+      uploadedImageUrl = '';
+      previewImg.src = '';
+      imageUpload.style.display = '';
+      imagePreview.style.display = 'none';
+      imageInput.value = '';
+    }
+
+    // ===== WORD COUNT =====
+    const contentArea = document.getElementById('postContent');
+    const wordCountEl = document.getElementById('wordCount');
+
+    contentArea.addEventListener('input', () => {
+      const text = contentArea.value.trim();
+      const words = text ? text.split(/\s+/).length : 0;
+      const readTime = Math.max(1, Math.ceil(words / 200));
+      wordCountEl.textContent = `${words} word${words !== 1 ? 's' : ''} · ~${readTime} min read`;
+    });
+
+    // ===== FORMAT TOOLBAR =====
+    function insertFormat(before, after) {
+      const textarea = document.getElementById('postContent');
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const text = textarea.value;
+      const selected = text.substring(start, end);
+
+      textarea.value = text.substring(0, start) + before + selected + after + text.substring(end);
+      textarea.focus();
+      textarea.setSelectionRange(start + before.length, start + before.length + selected.length);
+      textarea.dispatchEvent(new Event('input'));
+    }
+
+    // ===== SAVE DRAFT =====
+    function saveDraft() {
+      const data = {
+        title: document.getElementById('postTitle').value,
+        category: document.getElementById('postCategory').value,
+        excerpt: document.getElementById('postExcerpt').value,
+        content: document.getElementById('postContent').value,
+        tags: tags,
+        image: uploadedImageUrl
+      };
+
+      Storage.set('blog_draft', data);
+
+      const saveStatus = document.getElementById('autoSaveStatus');
+      saveStatus.style.opacity = '1';
+      Toast.show('Draft saved locally!', 'success');
+
+      setTimeout(() => {
+        saveStatus.style.opacity = '0';
+      }, 3000);
+    }
+
+    // ===== LOAD DRAFT =====
+    function loadDraft() {
+      const draft = Storage.get('blog_draft');
+      if (draft) {
+        if (draft.title) document.getElementById('postTitle').value = draft.title;
+        if (draft.category) document.getElementById('postCategory').value = draft.category;
+        if (draft.excerpt) document.getElementById('postExcerpt').value = draft.excerpt;
+        if (draft.content) {
+          document.getElementById('postContent').value = draft.content;
+          contentArea.dispatchEvent(new Event('input'));
+        }
+        if (draft.tags) {
+          draft.tags.forEach(t => {
+            if (!tags.includes(t)) tags.push(t);
+          });
+          renderTags();
+        }
+        if (draft.image) {
+          uploadedImageUrl = draft.image;
+          previewImg.src = uploadedImageUrl;
+          imageUpload.style.display = 'none';
+          imagePreview.style.display = 'block';
+        }
+      }
+    }
+
+    // ===== PREVIEW =====
+    function previewPost() {
+      const title = document.getElementById('postTitle').value || 'Untitled Post';
+      const category = document.getElementById('postCategory').value || 'Uncategorized';
+      const content = document.getElementById('postContent').value || 'No content yet...';
+      const user = Auth.getCurrentUser();
+
+      const modal = document.getElementById('previewModal');
+      const previewContent = document.getElementById('previewContent');
+
+      const imageHtml = uploadedImageUrl
+        ? `<img src="${uploadedImageUrl}" alt="${title}" style="width:100%; height:300px; object-fit:cover; border-radius:var(--radius-md); margin-bottom:32px;">`
+        : '';
+
+      previewContent.innerHTML = `
+        ${imageHtml}
+        <span class="badge badge-primary" style="margin-bottom:20px;">${category}</span>
+        <h1 style="font-size:2rem; font-weight:800; letter-spacing:-0.5px; margin-bottom:16px; line-height:1.3;">${title}</h1>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid var(--border-subtle);">
+          <div class="card-avatar">${user ? user.avatar : '?'}</div>
+          <div>
+            <div style="font-weight:600; font-size:0.9rem;">${user ? user.name : 'Anonymous'}</div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">${formatDate(new Date().toISOString())} · Draft</div>
+          </div>
+        </div>
+        <div style="font-size:1rem; line-height:1.9; color:var(--text-secondary); white-space:pre-wrap;">${content}</div>
+        ${tags.length > 0 ? `
+          <div style="margin-top:32px; padding-top:24px; border-top:1px solid var(--border-subtle); display:flex; gap:8px; flex-wrap:wrap;">
+            ${tags.map(t => `<span class="badge badge-primary">${t}</span>`).join('')}
+          </div>
+        ` : ''}
+      `;
+
+      modal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePreview() {
+      document.getElementById('previewModal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closePreview();
+    });
+
+    // ===== PUBLISH POST =====
+    const createForm = document.getElementById('createForm');
+
+    createForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      FormValidator.clearAllErrors(createForm);
+
+      const title = document.getElementById('postTitle').value.trim();
+      const category = document.getElementById('postCategory').value;
+      const excerpt = document.getElementById('postExcerpt').value.trim();
+      const content = document.getElementById('postContent').value.trim();
+
+      let isValid = true;
+
+      if (!FormValidator.validateRequired(title)) {
+        FormValidator.showError(document.getElementById('postTitle'), 'Please enter a title.');
+        isValid = false;
+      }
+
+      if (!category) {
+        Toast.show('Please select a category', 'error');
+        isValid = false;
+      }
+
+      if (!FormValidator.validateRequired(excerpt)) {
+        FormValidator.showError(document.getElementById('postExcerpt'), 'Please enter an excerpt.');
+        isValid = false;
+      }
+
+      if (!FormValidator.validateRequired(content)) {
+        FormValidator.showError(document.getElementById('postContent'), 'Please write some content.');
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+      // Check if logged in
+      if (!Auth.isLoggedIn()) {
+        Toast.show('Please sign in to publish a post.', 'error');
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 1500);
+        return;
+      }
+
+      // Use a random fallback image if none uploaded
+      const fallbackImages = [
+        'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80',
+        'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=800&q=80',
+        'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=800&q=80',
+        'https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?w=800&q=80'
+      ];
+
+      const postData = {
+        title,
+        category,
+        excerpt,
+        content,
+        tags: [...tags],
+        image: uploadedImageUrl || fallbackImages[Math.floor(Math.random() * fallbackImages.length)]
+      };
+
+      const result = BlogManager.createPost(postData);
+
+      if (result.success) {
+        // Clear draft
+        Storage.remove('blog_draft');
+        Toast.show('Post published successfully! 🎉', 'success');
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 1500);
+      } else {
+        Toast.show(result.message, 'error');
+      }
+    });
+
+    // Clear errors on input
+    createForm.querySelectorAll('.form-input').forEach(input => {
+      input.addEventListener('input', () => {
+        FormValidator.clearError(input);
+      });
+    });
+
+    // ===== INIT =====
+    document.addEventListener('DOMContentLoaded', () => {
+      loadDraft();
+    });
+  </script>
+</body>
+</html>

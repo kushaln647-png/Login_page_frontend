@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your Inkwell Dashboard — manage your blog posts, view analytics, and track your writing progress.">
+  <title>Dashboard — Inkwell Blog</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>✦</text></svg>">
+</head>
+<body>
+  <!-- Background Mesh -->
+  <div class="bg-mesh"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">✦</div>
+        <span>Inkwell</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link active">Dashboard</a>
+        <a href="create.html" class="nav-link">Write</a>
+      </div>
+
+      <div class="nav-auth" id="navAuth">
+        <a href="login.html" class="btn-ghost">Sign In</a>
+        <a href="register.html" class="btn-primary-sm">Get Started</a>
+      </div>
+
+      <div class="nav-hamburger" id="navHamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNav">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="dashboard.html" class="nav-link active">Dashboard</a>
+    <a href="create.html" class="nav-link">Write</a>
+    <div class="mobile-auth">
+      <a href="login.html" class="btn btn-secondary">Sign In</a>
+      <a href="register.html" class="btn btn-primary">Get Started</a>
+    </div>
+  </div>
+
+  <!-- Dashboard Page -->
+  <main class="dashboard-page">
+    <div class="dashboard-container">
+
+      <!-- Dashboard Header -->
+      <div class="dashboard-header" id="dashboardHeader">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+          <div>
+            <h1 id="welcomeText">Welcome back 👋</h1>
+            <p>Here's what's happening with your blog today.</p>
+          </div>
+          <a href="create.html" class="btn btn-primary">
+            ✦ New Post
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-icon purple">📝</div>
+          <div class="stat-card-value" id="statPosts">0</div>
+          <div class="stat-card-label">Total Posts</div>
+          <div class="stat-card-change positive">↑ New this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon pink">👁</div>
+          <div class="stat-card-value">2,847</div>
+          <div class="stat-card-label">Total Views</div>
+          <div class="stat-card-change positive">↑ 12% from last week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon green">❤️</div>
+          <div class="stat-card-value">384</div>
+          <div class="stat-card-label">Total Likes</div>
+          <div class="stat-card-change positive">↑ 8% from last week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon amber">💬</div>
+          <div class="stat-card-value">56</div>
+          <div class="stat-card-label">Comments</div>
+          <div class="stat-card-change positive">↑ 3 new today</div>
+        </div>
+      </div>
+
+      <!-- Dashboard Grid -->
+      <div class="dashboard-grid">
+        <!-- My Posts Section -->
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2>Your Posts</h2>
+            <a href="create.html">Write New →</a>
+          </div>
+          <div id="myPostsList">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Activity Feed -->
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h2>Recent Activity</h2>
+          </div>
+          <div id="activityFeed">
+            <div class="activity-item">
+              <div class="activity-dot purple"></div>
+              <div>
+                <div class="activity-text"><strong>Sarah Mitchell</strong> liked your post "The Future of AI"</div>
+                <div class="activity-time">2 hours ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot green"></div>
+              <div>
+                <div class="activity-text"><strong>Alex Chen</strong> commented on "Modern CSS"</div>
+                <div class="activity-time">5 hours ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot pink"></div>
+              <div>
+                <div class="activity-text">Your post reached <strong>500 views</strong> 🎉</div>
+                <div class="activity-time">1 day ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot purple"></div>
+              <div>
+                <div class="activity-text"><strong>Maya Rodriguez</strong> started following you</div>
+                <div class="activity-time">2 days ago</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot green"></div>
+              <div>
+                <div class="activity-text">You published a new post successfully</div>
+                <div class="activity-time">3 days ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" style="margin-top: 40px;">
+    <div class="footer-container">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <span>© 2026 Inkwell. All rights reserved.</span>
+        <span>Made with ♥ for writers everywhere</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check auth
+      const user = Auth.getCurrentUser();
+
+      if (user) {
+        document.getElementById('welcomeText').textContent = `Welcome back, ${user.name.split(' ')[0]} 👋`;
+      }
+
+      renderMyPosts();
+    });
+
+    function renderMyPosts() {
+      const user = Auth.getCurrentUser();
+      const allPosts = BlogManager.getPosts();
+
+      // Show user's posts + default posts for demo
+      let postsToShow;
+      if (user) {
+        const userPosts = allPosts.filter(p => p.userId === user.id);
+        const demoPosts = allPosts.filter(p => !p.userId);
+        postsToShow = [...userPosts, ...demoPosts].slice(0, 5);
+      } else {
+        postsToShow = allPosts.slice(0, 5);
+      }
+
+      // Update stat
+      document.getElementById('statPosts').textContent = postsToShow.length;
+
+      const container = document.getElementById('myPostsList');
+
+      if (postsToShow.length === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:40px 20px;">
+            <div style="font-size:2.5rem; margin-bottom:16px;">📝</div>
+            <h3 style="font-size:1.1rem; margin-bottom:8px;">No posts yet</h3>
+            <p style="color:var(--text-secondary); margin-bottom:20px;">Start writing your first blog post!</p>
+            <a href="create.html" class="btn btn-primary">Create Your First Post</a>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = postsToShow.map(post => `
+        <div class="blog-list-item">
+          <img src="${post.image}" alt="${post.title}" class="blog-list-thumb"
+               onerror="this.style.background='var(--gradient-cool)';this.alt='Post';">
+          <div class="blog-list-content" style="flex:1;">
+            <h3><a href="#">${post.title}</a></h3>
+            <p>${formatDate(post.date)} · ${post.readTime} · ${post.category}</p>
+            <div class="blog-list-actions">
+              <button class="btn-edit" onclick="Toast.show('Edit feature coming soon!', 'info')">Edit</button>
+              <button class="btn-delete" onclick="deletePost('${post.id}')">Delete</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function deletePost(id) {
+      if (confirm('Are you sure you want to delete this post?')) {
+        BlogManager.deletePost(id);
+        Toast.show('Post deleted successfully', 'success');
+        renderMyPosts();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your free Inkwell account. Start writing blog posts and sharing your stories with the world.">
+  <title>Create Account — Inkwell Blog</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>✦</text></svg>">
+</head>
+<body>
+  <!-- Background Mesh -->
+  <div class="bg-mesh"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">✦</div>
+        <span>Inkwell</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="create.html" class="nav-link">Write</a>
+      </div>
+
+      <div class="nav-auth" id="navAuth">
+        <a href="login.html" class="btn-ghost">Sign In</a>
+        <a href="register.html" class="btn-primary-sm">Get Started</a>
+      </div>
+
+      <div class="nav-hamburger" id="navHamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNav">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="dashboard.html" class="nav-link">Dashboard</a>
+    <a href="create.html" class="nav-link">Write</a>
+    <div class="mobile-auth">
+      <a href="login.html" class="btn btn-secondary">Sign In</a>
+      <a href="register.html" class="btn btn-primary">Get Started</a>
+    </div>
+  </div>
+
+  <!-- Register Page -->
+  <main class="auth-page">
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h1>Create your account</h1>
+          <p>Join thousands of writers sharing their stories</p>
+        </div>
+
+        <!-- Social Sign Up -->
+        <div class="auth-social">
+          <button class="btn" id="socialGoogle" title="Sign up with Google" onclick="Toast.show('Social login is a demo feature', 'info')">
+            G
+          </button>
+          <button class="btn" id="socialGithub" title="Sign up with GitHub" onclick="Toast.show('Social login is a demo feature', 'info')">
+            ⌨
+          </button>
+          <button class="btn" id="socialTwitter" title="Sign up with Twitter" onclick="Toast.show('Social login is a demo feature', 'info')">
+            𝕏
+          </button>
+        </div>
+
+        <div class="auth-divider">or sign up with email</div>
+
+        <!-- Register Form -->
+        <form id="registerForm">
+          <div class="form-group">
+            <label class="form-label" for="registerName">Full Name</label>
+            <input type="text" id="registerName" class="form-input" placeholder="John Doe" autocomplete="name" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="registerEmail">Email Address</label>
+            <input type="email" id="registerEmail" class="form-input" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="registerPassword">Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="registerPassword" class="form-input" placeholder="Min. 6 characters" autocomplete="new-password" required>
+              <button type="button" class="password-toggle">👁</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="registerConfirmPassword">Confirm Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="registerConfirmPassword" class="form-input" placeholder="Re-enter your password" autocomplete="new-password" required>
+              <button type="button" class="password-toggle">👁</button>
+            </div>
+          </div>
+
+          <!-- Password Strength -->
+          <div id="passwordStrength" style="margin-bottom: 20px; display: none;">
+            <div style="display: flex; gap: 4px; margin-bottom: 6px;">
+              <div class="strength-bar" style="flex:1; height:3px; border-radius:2px; background:var(--border-subtle); transition: all 0.3s;"></div>
+              <div class="strength-bar" style="flex:1; height:3px; border-radius:2px; background:var(--border-subtle); transition: all 0.3s;"></div>
+              <div class="strength-bar" style="flex:1; height:3px; border-radius:2px; background:var(--border-subtle); transition: all 0.3s;"></div>
+              <div class="strength-bar" style="flex:1; height:3px; border-radius:2px; background:var(--border-subtle); transition: all 0.3s;"></div>
+            </div>
+            <span id="strengthText" style="font-size: 0.75rem; color: var(--text-muted);"></span>
+          </div>
+
+          <div class="form-checkbox">
+            <input type="checkbox" id="agreeTerms" required>
+            <label for="agreeTerms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="registerSubmit" style="width:100%; margin-bottom: 4px;">
+            Create Account
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          Already have an account? <a href="login.html">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Redirect if already logged in
+    if (Auth.isLoggedIn()) {
+      window.location.href = 'dashboard.html';
+    }
+
+    // Password strength indicator
+    const passwordInput = document.getElementById('registerPassword');
+    const strengthContainer = document.getElementById('passwordStrength');
+    const strengthBars = document.querySelectorAll('.strength-bar');
+    const strengthText = document.getElementById('strengthText');
+
+    passwordInput.addEventListener('input', () => {
+      const password = passwordInput.value;
+
+      if (password.length === 0) {
+        strengthContainer.style.display = 'none';
+        return;
+      }
+
+      strengthContainer.style.display = 'block';
+
+      let strength = 0;
+      if (password.length >= 6) strength++;
+      if (password.length >= 10) strength++;
+      if (/[A-Z]/.test(password) && /[a-z]/.test(password)) strength++;
+      if (/[0-9]/.test(password) || /[^A-Za-z0-9]/.test(password)) strength++;
+
+      const colors = ['#f87171', '#fbbf24', '#34d399', '#6366f1'];
+      const labels = ['Weak', 'Fair', 'Good', 'Strong'];
+
+      strengthBars.forEach((bar, i) => {
+        if (i < strength) {
+          bar.style.background = colors[strength - 1];
+        } else {
+          bar.style.background = 'var(--border-subtle)';
+        }
+      });
+
+      strengthText.textContent = labels[strength - 1] || '';
+      strengthText.style.color = colors[strength - 1] || 'var(--text-muted)';
+    });
+
+    // Register form handler
+    const registerForm = document.getElementById('registerForm');
+
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      FormValidator.clearAllErrors(registerForm);
+
+      const name = document.getElementById('registerName').value.trim();
+      const email = document.getElementById('registerEmail').value.trim();
+      const password = document.getElementById('registerPassword').value;
+      const confirmPassword = document.getElementById('registerConfirmPassword').value;
+      const agreeTerms = document.getElementById('agreeTerms').checked;
+
+      let isValid = true;
+
+      // Validate name
+      if (!FormValidator.validateRequired(name)) {
+        FormValidator.showError(document.getElementById('registerName'), 'Please enter your full name.');
+        isValid = false;
+      }
+
+      // Validate email
+      if (!FormValidator.validateEmail(email)) {
+        FormValidator.showError(document.getElementById('registerEmail'), 'Please enter a valid email address.');
+        isValid = false;
+      }
+
+      // Validate password
+      if (!FormValidator.validatePassword(password)) {
+        FormValidator.showError(document.getElementById('registerPassword'), 'Password must be at least 6 characters.');
+        isValid = false;
+      }
+
+      // Confirm password
+      if (password !== confirmPassword) {
+        FormValidator.showError(document.getElementById('registerConfirmPassword'), 'Passwords do not match.');
+        isValid = false;
+      }
+
+      // Terms
+      if (!agreeTerms) {
+        Toast.show('Please agree to the Terms of Service.', 'error');
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+      // Attempt registration
+      const result = Auth.register(name, email, password);
+
+      if (result.success) {
+        Toast.show('Account created successfully! 🎉', 'success');
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 1000);
+      } else {
+        Toast.show(result.message, 'error');
+      }
+    });
+
+    // Clear errors on input
+    registerForm.querySelectorAll('.form-input').forEach(input => {
+      input.addEventListener('input', () => {
+        FormValidator.clearError(input);
+      });
+    });
+  </script>
+</body>
+</html>
